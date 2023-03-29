@@ -13,7 +13,7 @@ public class MultiThread {
       Thread thread = new Thread(task);
       thread.start();
       threads.add(thread);
-      if (threads.size() % 2 == 0) {
+      if (threads.size() % 5 == 0) {
        waitForThreads(threads);
       }
      }

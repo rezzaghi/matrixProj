@@ -1,6 +1,7 @@
 package matrixProj;
 
 import java.io.FileReader;
+import java.time.Duration;
 import java.util.Scanner;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
@@ -16,12 +17,12 @@ public class Matrix {
         //String fileNameB = "C:\\Users\\Spopoi\\eclipse-workspace\\matrixProj\\src\\main\\java\\matrixB.csv";
 
         //3L e 2C
-        //String fileName = "C:\\Users\\Spopoi\\eclipse-workspace\\matrixProj\\src\\main\\java\\matrix1.csv";
-        //String fileNameB = "C:\\Users\\Spopoi\\eclipse-workspace\\matrixProj\\src\\main\\java\\matrix1B.csv";
+        String fileName = "C:\\Users\\Spopoi\\eclipse-workspace\\matrixProj\\src\\main\\java\\matrix1.csv";
+        String fileNameB = "C:\\Users\\Spopoi\\eclipse-workspace\\matrixProj\\src\\main\\java\\matrix1B.csv";
 
         //4L e 5C
-        String fileName = "C:\\Users\\Spopoi\\eclipse-workspace\\matrixProj\\src\\main\\java\\matrix2.csv";
-        String fileNameB = "C:\\Users\\Spopoi\\eclipse-workspace\\matrixProj\\src\\main\\java\\matrix2B.csv";
+        //String fileName = "C:\\Users\\Spopoi\\eclipse-workspace\\matrixProj\\src\\main\\java\\matrix2.csv";
+        //String fileNameB = "C:\\Users\\Spopoi\\eclipse-workspace\\matrixProj\\src\\main\\java\\matrix2B.csv";
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("quantidade de linhas: ");
@@ -60,20 +61,9 @@ public class Matrix {
         }
         */
 
-        //Single thread
- 	long startTime = System.nanoTime();
         multiplyMatrices(matrixA, matrixB, matrixC);
-	long endTime = System.nanoTime();
-	long totalTime = endTime - startTime;
-	System.out.println(totalTime + " ms");
-
-
-	//MultiThread
- 	long startTimeT = System.nanoTime();
 	MultiThread.multiply(matrixA, matrixB, matrixD);
-	long endTimeT = System.nanoTime();
-	long totalTimeT = endTimeT - startTimeT;
-	System.out.println(totalTimeT + " ms");
+
 
     }
 
@@ -118,6 +108,7 @@ public class Matrix {
         }
         
         
+ 	long startTime = System.nanoTime();
         for (int i = 0; i < m1Rows; i++) {
             for (int j = 0; j < m2Cols; j++) {
                 int sum = 0;
@@ -127,6 +118,10 @@ public class Matrix {
                 result[i][j] = sum;
             }
         }
+        long endTime = System.nanoTime();
+	long totalTime = endTime - startTime;
+	Duration d = Duration.ofNanos(totalTime);
+	System.out.println("single: " + d);
         
     }
 }
